@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V0IDInterface – Streamlabs Authorization</title>
+</head>
+<body>
+    <h1>V0IDInterface</h1>
+    <h2>Streamlabs Authorization</h2>
+
+    <p id="status">Processing Streamlabs authorization...</p>
+
+    <script>
+        const params = new URLSearchParams(window.location.search);
+        const code = params.get("code");
+        const error = params.get("error");
+
+        const status = document.getElementById("status");
+
+        if (error) {
+            status.textContent =
+                "Streamlabs authorization was declined or failed: " + error;
+        } else if (code) {
+            status.textContent =
+                "Streamlabs authorization successful. You may now return to V0IDInterface.";
+        } else {
+            status.textContent =
+                "No Streamlabs authorization response was received.";
+        }
+    </script>
+</body>
+</html>
